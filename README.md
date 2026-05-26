@@ -84,7 +84,7 @@ dart-disclosure-pipeline/
 > No disclosures on weekends (05/23–24) and public holiday (05/26).  
 > CloudWatch zero-disclosures alarm triggered correctly — SNS email received.
 
-![alarm_email](assets/alarm_email.png)
+![alarm_email](assets/alarm_log.png)
 
 ---
 
