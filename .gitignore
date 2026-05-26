@@ -1,0 +1,5 @@
+# 민감 정보
+.env
+dart_layer/
+dart_layer.zip
+dart_processor.zip
