@@ -30,6 +30,7 @@ CloudWatch Alarms → SNS → Email notification
 
 ## Directory Structure
 
+```text
 dart-disclosure-pipeline/
 ├── lambda_collector/
 │   └── handler.py         # DART API call → S3 storage
@@ -39,6 +40,7 @@ dart-disclosure-pipeline/
 │   ├── init_db.py         # Table DDL execution
 │   └── check_rds.py       # Verify stored data
 └── sns_alarm.py           # SNS alarm test + CloudWatch alarm setup
+```
 
 ---
 
