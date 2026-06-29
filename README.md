@@ -103,7 +103,7 @@ python rds_db/init_db.py
 python rds_db/check_rds.py
 
 # Create CloudWatch alarms
-python scripts/create_alarms.py
+python scripts/sns_alarm.py
 ```
 
 ---

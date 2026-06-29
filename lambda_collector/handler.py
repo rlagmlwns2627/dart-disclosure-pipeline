@@ -5,11 +5,15 @@ import os
 from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv() # 로컬 개발용, 람다 환경에서는 무시
 KST = timezone(timedelta(hours=9))
 
 DART_API_KEY = os.environ.get('DART_API_KEY')
 S3_BUCKET    = os.environ.get('S3_BUCKET')
+
+# 전역으로 이동
+s3 = boto3.client('s3')
+cw = boto3.client('cloudwatch')
 
 def handler(event, context):
     today = datetime.now(KST).strftime('%Y%m%d')
@@ -45,8 +49,7 @@ def handler(event, context):
         page_no += 1
 
     # 2. S3 raw 저장
-    s3  = boto3.client('s3')
-    now = now = datetime.now(KST)
+    now = datetime.now(KST)
     key = f"raw/disclosure/{now.year}/{now.month:02d}/{now.day:02d}/data_{now.strftime('%H%M%S')}.json"
 
     try:
@@ -60,7 +63,6 @@ def handler(event, context):
         raise RuntimeError(f"S3 저장 실패: {e}")
 
     # 3. CloudWatch 커스텀 메트릭 전송
-    cw = boto3.client('cloudwatch')
     cw.put_metric_data(
         Namespace='DartPipeline',
         MetricData=[{
